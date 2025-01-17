@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  amazon-ec2-utils:
+    image: rockylinux:8
+    volumes:
+      - .:/amazon-ec2-utils
+    command: >
+      sh -c '
+      yum -y install rpm-build git python2 systemd-rpm-macros
+      && cd /amazon-ec2-utils
+      && rpmbuild --define "_sourcedir /amazon-ec2-utils" --define "dist .el7" -bb amazon-ec2-utils.spec
+      && cp /root/rpmbuild/RPMS/noarch/* /amazon-ec2-utils
+      '

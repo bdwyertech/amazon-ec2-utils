@@ -1,6 +1,6 @@
 Name:      amazon-ec2-utils
 Summary:   A set of tools for running in EC2
-Version:   1.4.1
+Version:   1.4.2
 Release:   1%{?dist}
 License:   MIT
 Group:     System Tools
@@ -23,7 +23,7 @@ Provides:  ec2-utils
 Provides:  ec2-metadata
 Obsoletes: ec2-metadata
 Requires:  curl
-BuildRequires: python
+BuildRequires: python2
 BuildRoot: %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 
 %description
@@ -67,7 +67,7 @@ install -m755 %{SOURCE24} $RPM_BUILD_ROOT/sbin/
 ln -sf %{_bindir}/ec2-metadata $RPM_BUILD_ROOT/opt/aws/bin/ec2-metadata
 
 %check
-%{__python} -m py_compile %{SOURCE24}
+%{__python2} -m py_compile %{SOURCE24}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
